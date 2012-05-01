@@ -5,7 +5,7 @@
             [ring.middleware.keyword-params :as keyword-params]
             [ring.middleware.nested-params :as nested-params]
             [ring.middleware.session :as session]
-            [remvee.ring.middleware.basic-authentication :as basic]))
+            [ring.middleware.basic-authentication :as basic]))
 
 (defonce scores (atom []))
 
@@ -34,10 +34,15 @@
       (params/wrap-params)
       (session/wrap-session)))
 
+(defn authenticated? [name pass]
+  (= [name pass] [(System/getenv "AUTH_USER") (System/getenv "AUTH_PASS")]))
+
 (defn wrap-drawbridge [handler]
   (fn [req]
-    (if (= "/repl" (:uri req))
-      (drawbridge-handler req)
+    (let [handler (if (= "/repl" (:uri req))
+                    (basic/wrap-basic-authentication
+                     drawbridge-handler authenticated?)
+                    handler)]
       (handler req))))
 
 (defn -main [& [port]]

@@ -24,7 +24,7 @@
     (swap! scores conj magnitude)
     {:status 200
      :headers {"Content-Type" "text/plain"}
-     :body (format "{\"%s\": %s, \"percentile\": %s}"
+     :body (format "{\"%s\": %s, \"percentile\": %.2f}"
                    chortle magnitude (percentile magnitude))}))
 
 (def drawbridge-handler

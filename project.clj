@@ -1,4 +1,4 @@
-(defproject chortles "1.0.0-SNAPSHOT"
+(defproject chortles "1.0.0"
   :description "Just for laughs"
   :url "http://chortles.herokuapp.com"
   :dependencies [[org.clojure/clojure "1.4.0"]

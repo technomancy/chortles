@@ -16,7 +16,8 @@
     (+ (count sub-chortles) caps)))
 
 (defn percentile [magnitude]
-  (* 100.0 (/ (count (filter (partial >= magnitude) @scores)) (count @scores))))
+  (* 100.0 (/ (count (filter (partial >= magnitude) @scores))
+              (count @scores))))
 
 (defn app [req]
   (let [chortle (slurp (:body req))

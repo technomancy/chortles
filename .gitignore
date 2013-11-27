@@ -3,7 +3,6 @@ pom.xml
 *jar
 target
 /classes/
-/.lein-deps-sum
-/.lein-failures
+/.lein-*
 /checkouts
 /.env

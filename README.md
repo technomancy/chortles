@@ -8,9 +8,17 @@ See [Debugging Clojure apps with Drawbridge](https://devcenter.heroku.com/articl
 
 ## Usage
 
+This requires Leiningen 2 on the client side.
+
+To set env vars (**pre-requisite**):
+
+    EXPORT AUTH_USER=flynn
+    EXPORT AUTH_PASS=reindeerflotilla
+    EXPORT PORT=5000
+
 To start a web server:
 
-    $ AUTH_USER=flynn AUTH_PASS=reindeerflotilla PORT=5000 lein run -m chortles.web
+    $ lein run
 
 To calculate a laugh:
 
@@ -20,8 +28,6 @@ To calculate a laugh:
 To connect a REPL to the running app:
 
     $ lein repl :connect http://flynn:reindeerflotilla@localhost:5000/repl
-
-This requires Leiningen 2 on the client side.
 
 ## License
 

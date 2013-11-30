@@ -9,6 +9,12 @@
 
 (defonce scores (atom []))
 
+;; nrepl: inspect HTTP requests
+(defonce requests (atom []))
+
+;; nrepl: flush the stored requests list
+;; (swap! requests empty).
+
 (defn calculate-chortle-magnitude [chortle]
   (let [sub-chortles (re-seq #"(?im)ha+" chortle)
         caps (apply + (for [sub sub-chortles c sub
@@ -20,6 +26,7 @@
               (count @scores))))
 
 (defn app [req]
+  (swap! requests conj req)
   (let [chortle (slurp (:body req))
         magnitude (calculate-chortle-magnitude chortle)]
     (swap! scores conj magnitude)
